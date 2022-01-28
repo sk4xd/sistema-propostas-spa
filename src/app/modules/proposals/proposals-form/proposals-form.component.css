@@ -1,0 +1,3 @@
+:host ::ng-deep ng-multiselect-dropdown .multiselect-dropdown > .selected-item{
+  max-width: none;
+}

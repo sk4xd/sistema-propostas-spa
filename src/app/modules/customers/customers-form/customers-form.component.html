@@ -1,0 +1,179 @@
+
+  <div>
+    <div class="row" style="flex-direction: row-reverse;">
+      <span (click)="onNoClick()" type="button" class="btn-close" aria-label="Close" style="cursor: pointer;"></span>
+    </div>
+    <h3>
+      Clientes
+    </h3>
+    <form [formGroup]="form" (ngSubmit)="saveCustomer()">
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label for="name">Nome completo</label>
+          <input formControlName="name" type="text" class="form-control" id="nome" placeholder="Nome completo">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="cpfCnpj">Data de nascimento</label>
+          <input formControlName="birthDate" type="date" class="form-control" id="cpfCnpj">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="identity">R.G</label>
+          <input formControlName="identity" mask="00.000.000-0" type="text" class="form-control" id="identity" placeholder="00.000.000-0">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputAddress">Data de expedição R.G</label>
+          <input formControlName="identityExpedition" type="date" class="form-control" id="identityExpedition">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4">CPF</label>
+          <input formControlName="cpfCnpj" type="text" class="form-control" mask="CPF_CNPJ" id="cpfCnpj" placeholder="000.000.000-00">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="civilState">Estado civil</label>
+          <select formControlName="civilState" type="text" class="form-control" id="civilState">
+            <option value="">Selecione</option>
+            <option value="Solteiro (a)">Solteiro (a)</option>
+            <option value="Casado (a)">Casado (a)</option>
+            <option value="Viúvo (a)">Viúvo (a)</option>
+            <option value="Divorciado (a)">Divorciado (a)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="mothersName">Nome da Mãe</label>
+        <input formControlName="mothersName" type="text" class="form-control" id="mothersName" placeholder="Nome da Mãe">
+      </div>
+      <div class="form-group">
+        <label for="fathersName">Nome do Pai</label>
+        <input formControlName="fathersName" type="text" class="form-control" id="fathersName" placeholder="Nome do Pai">
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6" style="margin-top: 1em;">
+          <label for="phoneNumber">Telefone</label>
+          <input formControlName="phoneNumber" type="text" class="form-control" mask="(00) 0000-0000" id="phoneNumber" placeholder="(xx) 9999-9999">
+        </div>
+        <div class="form-group col-md-6" style="margin-top: 1em;">
+          <label for="cellphone">Celular</label>
+          <input formControlName="cellphone" type="text" class="form-control" mask="(00) 0000-0000||(00) 0 0000-0000" id="cellphone" placeholder="(xx) 99999-9999">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="location">Cep</label>
+        <input formControlName="cep" type="text" class="form-control" id="location" mask="00000-000" placeholder="00000-000">
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-10">
+          <label for="address">Endereço</label>
+          <input formControlName="address" type="text" class="form-control" id="address" placeholder="Endereço">
+        </div>
+
+        <div class="form-group col-md-2">
+          <label for="number">Número</label>
+          <input formControlName="number" type="text" class="form-control" id="number" placeholder="Número">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="district">Bairro</label>
+        <input formControlName="district" type="text" class="form-control" id="district" placeholder="Bairro">
+      </div>
+
+      <div class="form-group">
+        <label for="city">Cidade</label>
+        <input formControlName="city" type="text" class="form-control" id="city" placeholder="Cidade">
+      </div>
+
+      <div class="form-group">
+        <label for="state">Estado</label>
+        <input formControlName="state" type="text" mask="SS" class="form-control" id="state" placeholder="Estado">
+      </div>
+
+      <div class="form-group">
+        <label for="complement">Complemento</label>
+        <input formControlName="complement" type="text" class="form-control" id="complement" placeholder="Complemento">
+      </div>
+
+      <div class="form-group">
+        <label for="placeOfBirth">Cidade de nascimento</label>
+        <input formControlName="placeOfBirth" type="text" class="form-control" id="placeOfBirth" placeholder="Cidade de nascimento">
+      </div>
+
+      <div class="form-switch" style="margin-top: 1em;">
+        <label for="ownHouse">Possui residência</label>
+        <input type="checkbox" formControlName="ownHouse" class="form-check-input" id="ownHouse">
+      </div>
+
+      <div class="form-group">
+        <label for="inputAddress">E-mail</label>
+        <input formControlName="email" placeholder="user@example.gov" list="defaultEmails" size="64" maxlength="256" type="email" class="form-control" id="email" placeholder="E-mail">
+        <datalist id="defaultEmails">
+          <option value="@hotmail.com">
+          <option value="@yahoo.com.br">
+          <option value="@gmail.com">
+          <option value="@starkindustries.gov.br">
+          <option value="@outlook.com">
+        </datalist>
+      </div>
+
+      <div class="form-group" style="margin-top: 1em;">
+        <label for="firstReferralName">Nome Referência 1</label>
+        <input type="text" formControlName="firstReferralName" class="form-control" id="firstReferralName">
+      </div>
+
+      <div class="form-group" style="margin-top: 1em;">
+        <label for="firstReferralPhone">Telefone/Celular Referência 1</label>
+        <input type="text" formControlName="firstReferralPhone" mask="(00) 0000-0000||(00) 0 0000-0000" class="form-control" id="firstReferralPhone">
+      </div>
+
+      <div class="form-group" style="margin-top: 1em;">
+        <label for="secondReferralName">Nome Referência 2</label>
+        <input type="text" formControlName="secondReferralName" class="form-control" id="secondReferralName">
+      </div>
+
+      <div class="form-group" style="margin-top: 1em;">
+        <label for="secondReferralPhone">Telefone/Celular Referência 2</label>
+        <input type="text" formControlName="secondReferralPhone" mask="(00) 0000-0000||(00) 0 0000-0000" class="form-control" id="secondReferralPhone">
+      </div>
+
+      <div class="form-group">
+        <label for="job">Ocupação/Profissão</label>
+        <input formControlName="job" type="text" class="form-control" id="job" placeholder="Ocupação/Profissão">
+      </div>
+
+      <div class="form-switch" style="margin-top: 1em;">
+        <label for="partnersName">Nome conjugê</label>
+        <input type="text" formControlName="partnersName" class="form-control" id="partnersName" placeholder="Nome conjugê">
+      </div>
+
+      <div class="form-switch" style="margin-top: 1em;">
+        <label for="partnersCPF">CPF conjugê</label>
+        <input type="text" formControlName="partnersCPF" mask="CPF_CNPJ" placeholder="000.000.000-00" class="form-control" id="partnersCPF">
+      </div>
+
+      <div class="form-group">
+        <label for="observation">Observação</label>
+        <textarea
+        formControlName="observation"
+        type="text"
+        class="form-control"
+        id="observation"
+        placeholder="Local"
+        maxlength="2000"
+        >
+        </textarea>
+      </div>
+
+      <div class="form-group" style="margin-top: 1em; display: flex; justify-content: space-between;">
+        <button type="button" (click)="onNoClick()" class="btn btn-secondary">Sair</button>
+        <button *ngIf="!readonly" [disabled]="form.invalid" type="submit" class="btn btn-primary">Salvar</button>
+      </div>
+    </form>
+</div>

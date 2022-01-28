@@ -1,0 +1,62 @@
+
+  <div>
+    <div class="row" style="flex-direction: row-reverse;">
+      <span (click)="onNoClick()" type="button" class="btn-close" aria-label="Close" style="cursor: pointer;"></span>
+    </div>
+      <h3>
+        Usuários
+      </h3>
+      <form [formGroup]="form" (ngSubmit)="saveUser()">
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label for="name">Nome completo</label>
+            <input formControlName="name" type="text" class="form-control" id="nome" placeholder="Nome completo">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Nome de usuário</label>
+            <input formControlName="name" type="text" class="form-control" id="inputEmail4" placeholder="Nome de usuário">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="password">Senha</label>
+            <input formControlName="password" type="password" class="form-control" id="password" placeholder="Senha">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputAddress">E-mail</label>
+          <input formControlName="email" placeholder="user@example.gov" list="defaultEmails" size="64" maxlength="256" type="email" class="form-control" id="email" placeholder="E-mail">
+          <datalist id="defaultEmails">
+            <option value="@hotmail.com">
+            <option value="@yahoo.com.br">
+            <option value="@gmail.com">
+            <option value="@starkindustries.gov.br">
+            <option value="@outlook.com">
+          </datalist>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Telefone fixo</label>
+            <input formControlName="phoneNumber" type="text" class="form-control" mask="(00) 0000-0000" [validation]="true" id="phoneNumber" placeholder="(xx) 9999-9999">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="cellphone">Celular</label>
+            <input formControlName="cellphone" type="text" class="form-control" mask="(00) 0000-0000||(00) 0 0000-0000" [validation]="true" id="cellphone" placeholder="(xx) 99999-9999">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="location">Local</label>
+          <input formControlName="location" type="text" class="form-control" id="location" placeholder="Local">
+        </div>
+
+        <div class="form-switch" style="margin-top: 1em;">
+          <label for="switch1">Admin</label>
+          <input type="checkbox" formControlName="isAdmin" class="form-check-input" id="switch1">
+        </div>
+
+        <div class="form-group" style="margin-top: 1em; display: flex; justify-content: space-between;">
+          <button type="button" (click)="onNoClick()" class="btn btn-secondary">Sair</button>
+          <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+      </form>
+  </div>

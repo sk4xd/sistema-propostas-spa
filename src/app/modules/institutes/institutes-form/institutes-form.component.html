@@ -1,0 +1,16 @@
+<section class="pb-4">
+  <div class="row" style="flex-direction: row-reverse;">
+    <span (click)="onNoClick()" type="button" class="btn-close" aria-label="Close" style="cursor: pointer;"></span>
+  </div>
+  <h4>Instituições</h4>
+  <form [formGroup]="form" (ngSubmit)="saveInstitute()">
+    <div class="form-group">
+      <label for="email">Nome da instituição:</label>
+      <input formControlName="institute_name" type="text" class="form-control" id="institute">
+    </div>
+    <div class="form-group" style="margin-top: 1em; display: flex; justify-content: space-between;">
+      <button type="button" (click)="onNoClick()" class="btn btn-secondary">Sair</button>
+      <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Salvar</button>
+    </div>
+  </form>
+</section>

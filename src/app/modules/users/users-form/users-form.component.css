@@ -1,0 +1,33 @@
+div .row {
+  margin-top: 1em;
+}
+
+div .row .form-group {
+  margin: 0
+}
+
+div .form-group {
+  margin-top: 1em;
+}
+.modal-open {
+  overflow: hidden;
+}
+
+.form-check-input {
+  float: none;
+  margin-left: 0;
+}
+
+.form-switch .form-check-input {
+  margin-left: 1rem;
+  width: 3em;
+  padding: 10px;
+}
+
+.form-check {
+ padding-left: 0;
+}
+
+.form-switch {
+  padding-left: 0;
+}

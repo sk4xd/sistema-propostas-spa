@@ -1,0 +1,50 @@
+<div class="mat-elevation-z8 padding-1">
+  <h4>
+    Usuários
+  </h4>
+  <mat-input-container class="row" style="text-align: end;">
+      <!-- <input matInput placeholder="Buscar usuário" #input> -->
+      <div>
+        <button type="button" (click)="openUserForm()" class="btn btn-primary">Novo usuário</button>
+      </div>
+      <!-- <i (click)="openUserForm()" class="icofont-plus-circle icofont-2x"></i> -->
+  </mat-input-container>
+
+  <div class="spinner-container" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col"> Nome </th>
+        <th scope="col"> Usuário </th>
+        <th scope="col"> E-mail </th>
+        <th scope="col"> Celular </th>
+        <th scope="col"> Telefone </th>
+        <th scope="col"> Admin </th>
+        <th scope="col" [hidden]="true" class="text-align-center"> Visualizar </th>
+        <th scope="col" class="text-align-center"> Editar </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of usersData.data">
+        <td> {{user.name}} </td>
+        <td> {{user.username}} </td>
+        <td> {{user.email}} </td>
+        <td> {{user.cellphone | mask: '(00) 0000-0000||(00) 0 0000-0000'}}</td>
+        <td> {{user.phoneNumber | mask: '(00) 0000-0000'}} </td>
+        <td> {{user.isAdmin ? 'Sim' : 'Não'}} </td>
+        <td [hidden]="true" class="text-align-center"><i class="icofont-eye"></i></td>
+        <td class="text-align-center"><i (click)="editUserForm(user)" class="icofont-edit"></i></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <mat-paginator
+    class="margin-top-2"
+    (page)="changePage($event)"
+    [length]="this.usersData.total"
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 15]">
+  </mat-paginator>
+</div>
