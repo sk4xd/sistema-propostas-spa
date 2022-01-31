@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://api.realizacred.app'
+  apiUrl: 'https://api.realizacred.app'
 };
