@@ -1,0 +1,10 @@
+component: website
+name: spa-realiza
+stage: prod
+
+inputs:
+    src:
+        src: ./src
+        hook: ng build --prod
+        dist: ./dist
+    domain: realizacred.app

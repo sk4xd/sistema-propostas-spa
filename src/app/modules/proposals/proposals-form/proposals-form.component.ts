@@ -13,11 +13,12 @@ import { CustomersFormComponent } from './../../customers/customers-form/custome
 import { ProposalsUploadsComponent } from './../proposals-uploads/proposals-uploads.component';
 
 export const comissionPercentValidation:  ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+  if(control.get('comission_value')?.value && control.get('final_value')?.value){
   const comissionValue = Number(control.get('comission_value')?.value.replace(/\,/, '.'));
   const finalValue = Number(control.get('final_value')?.value.replace(/\,/, '.'));
   if (comissionValue > finalValue) {
     return { invalidComission: true }
-  }
+  }}
   return null;
 };
 
@@ -143,7 +144,7 @@ export class ProposalsFormComponent implements OnInit, AfterContentInit {
         ...this.form.value,
         customer_id: this.form.controls['customer'].value[0].id,
         status_id: Number(this.form.controls['status'].value),
-        institute_id: this.form.controls['institute'].value[0].id
+        institute_id: this.form.controls['institute'].value ? this.form.controls['institute'].value[0].id : null
       })
 
       if (!formatedData.institute_id) {
@@ -272,6 +273,9 @@ export class ProposalsFormComponent implements OnInit, AfterContentInit {
   }
 
   stringToNumber(value: string): number {
+    if(value)
     return Number(value.replace(/\,/, '.'));
+
+    return 0;
   }
 }
