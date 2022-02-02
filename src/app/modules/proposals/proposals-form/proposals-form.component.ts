@@ -114,6 +114,7 @@ export class ProposalsFormComponent implements OnInit, AfterContentInit {
       this.form.controls['status'].setValue(this.proposal.status.id?.toString());
       this.proposal.customer.cpfCnpj = this.proposal.customer.cpfCnpj.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
       this.selectedCustomer.push(this.proposal.customer);
+      if (this.proposal.institute)
       this.selectedInstitute.push(this.proposal.institute);
     }
   }
@@ -144,6 +145,10 @@ export class ProposalsFormComponent implements OnInit, AfterContentInit {
         status_id: Number(this.form.controls['status'].value),
         institute_id: this.form.controls['institute'].value[0].id
       })
+
+      if (!formatedData.institute_id) {
+        delete formatedData.institute_id;
+      }
 
       this.proposalsService.update(this.proposal.id.toString(), formatedData).subscribe(res => {
         this.uploadFiles(this.proposal.id);
