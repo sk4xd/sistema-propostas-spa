@@ -170,7 +170,7 @@ export class ProposalsFormComponent implements OnInit, AfterContentInit {
       this.customers = res.data.map(customer => {
         return Object.assign({
           ...customer,
-          cpfCnpj: customer.cpfCnpj.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
+          cpfCnpj: customer.cpfCnpj ? customer.cpfCnpj.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4") : '000-000-000-00'
         })
       })
     })
