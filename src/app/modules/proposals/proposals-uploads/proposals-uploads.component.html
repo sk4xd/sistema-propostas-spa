@@ -11,7 +11,7 @@
   <div>
     <div *ngFor="let upload of uploads" class="row" style="margin-top: 1em;">
       <div class="form-group col-md-10">
-        <a class="form-control link-primary" style="cursor: pointer;" (click)="downloadUpload(upload.id)">{{ upload.upload_name }}</a>
+        <a class="form-control link-primary" style="cursor: pointer;" (click)="downloadUpload(upload.id, upload.upload_name)">{{ upload.upload_name }}</a>
       </div>
       <div class="form-group col-md-2" style="display: flex; align-self: end;">
         <button class="btn btn-secondary icofont-trash" (click)="removeUpload(upload.id)"></button>

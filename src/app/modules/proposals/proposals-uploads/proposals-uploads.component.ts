@@ -28,11 +28,10 @@ export class ProposalsUploadsComponent implements OnInit {
     this.dialogRef.close(this.indexesToRemove);
   }
 
-  downloadUpload(upload_id: string): void {
+  downloadUpload(upload_id: string, upload_name: string): void {
     this.proposalsService.downloadUpload(this.proposal_id, upload_id).subscribe(res => {
-      let fileNameToFormat = res.filename.split('=');
-      let formattedFileName = fileNameToFormat[1].substring(1, fileNameToFormat[1].length);
-      importedSaveAs(res.body, `${formattedFileName}`);
+
+      importedSaveAs(res.body, `${upload_name}`);
     });
   }
 
