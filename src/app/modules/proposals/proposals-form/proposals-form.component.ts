@@ -245,12 +245,9 @@ export class ProposalsFormComponent implements OnInit, AfterContentInit {
     })
   }
 
-  downloadContract(): void {
+  downloadContract(upload_name: String): void {
     this.proposalsService.downloadContract(this.proposal.id).subscribe(res => {
-      let fileNameToFormat = res.filename.split('=');
-      let formattedFileName = fileNameToFormat[1].substring(1, fileNameToFormat[1].length);
-      let blob = new Blob([res.body], { type: res.body.type })
-      importedSaveAs(blob, `${formattedFileName}`);
+      importedSaveAs(res.body, `${upload_name}`);
     });
   }
 

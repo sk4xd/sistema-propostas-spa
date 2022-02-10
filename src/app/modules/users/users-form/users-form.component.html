@@ -16,7 +16,7 @@
         <div class="row">
           <div class="form-group col-md-6">
             <label for="inputEmail4">Nome de usuário</label>
-            <input formControlName="name" type="text" class="form-control" id="inputEmail4" placeholder="Nome de usuário">
+            <input formControlName="username" type="text" class="form-control" id="username" placeholder="Nome de usuário">
           </div>
           <div class="form-group col-md-6">
             <label for="password">Senha</label>
@@ -37,11 +37,11 @@
         <div class="row">
           <div class="form-group col-md-6">
             <label for="inputEmail4">Telefone fixo</label>
-            <input formControlName="phoneNumber" type="text" class="form-control" mask="(00) 0000-0000" [validation]="true" id="phoneNumber" placeholder="(xx) 9999-9999">
+            <input formControlName="phoneNumber" type="text" class="form-control" mask="(00) 0000-0000" id="phoneNumber" placeholder="(xx) 9999-9999">
           </div>
           <div class="form-group col-md-6">
             <label for="cellphone">Celular</label>
-            <input formControlName="cellphone" type="text" class="form-control" mask="(00) 0000-0000||(00) 0 0000-0000" [validation]="true" id="cellphone" placeholder="(xx) 99999-9999">
+            <input formControlName="cellphone" type="text" class="form-control" [validation]="true" mask="(00) 0000-0000||(00) 0 0000-0000" id="cellphone" placeholder="(xx) 99999-9999">
           </div>
         </div>
         <div class="form-group">

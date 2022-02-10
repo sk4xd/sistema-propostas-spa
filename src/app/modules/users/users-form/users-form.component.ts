@@ -22,8 +22,8 @@ export class UsersFormComponent implements OnInit {
     email: new FormControl('', [Validators.required]),
     phoneNumber: new FormControl(''),
     cellphone: new FormControl('', [Validators.required]),
-    location: new FormControl('', [Validators.required]),
-    isAdmin: new FormControl(false, [Validators.required])
+    location: new FormControl(''),
+    isAdmin: new FormControl(false)
   });
 
   constructor(
