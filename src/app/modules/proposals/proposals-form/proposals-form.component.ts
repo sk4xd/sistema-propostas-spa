@@ -9,7 +9,6 @@ import { ProposalUpload } from './../../../shared/models/proposals/proposal-uplo
 import { Proposal } from './../../../shared/models/proposals/proposal.model';
 import { Status } from './../../../shared/models/proposals/status.model';
 import { ProposalsService } from './../../../shared/services/proposals/proposals.service';
-import { CustomersFormComponent } from './../../customers/customers-form/customers-form.component';
 import { ProposalsUploadsComponent } from './../proposals-uploads/proposals-uploads.component';
 
 export const comissionPercentValidation:  ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
@@ -280,12 +279,12 @@ export class ProposalsFormComponent implements OnInit, AfterContentInit {
   checkComissionValue(): void {
     this.form.controls['comission_value'].valueChanges.subscribe(value =>{
       let finalValue = this.stringToNumber(this.form.controls['final_value'].value)
-      this.form.controls['comission_percentage'].setValue(((this.stringToNumber(value) / finalValue) * 100).toFixed(6))}
+      this.form.controls['comission_percentage'].setValue(((this.stringToNumber(value) / finalValue) * 100))}
     )
 
     this.form.controls['final_value'].valueChanges.subscribe(value =>{
       let comissionValue = this.stringToNumber(this.form.controls['comission_value'].value);
-      this.form.controls['comission_percentage'].setValue(((comissionValue / this.stringToNumber(value)) * 100).toFixed(6))}
+      this.form.controls['comission_percentage'].setValue(((comissionValue / this.stringToNumber(value)) * 100))}
     )
   }
 
