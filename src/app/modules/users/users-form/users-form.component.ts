@@ -17,7 +17,7 @@ export class UsersFormComponent implements OnInit {
 
   form: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    username: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    username: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(10)]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     email: new FormControl('', [Validators.required]),
     phoneNumber: new FormControl(''),
@@ -39,6 +39,7 @@ export class UsersFormComponent implements OnInit {
   private checkEdit(): void {
     if (this.editing)
     this.form.controls['username'].disable();
+    this.form.controls['email'].disable();
   }
 
   onNoClick(): void {
@@ -56,6 +57,17 @@ export class UsersFormComponent implements OnInit {
       this.userService.update(this.user.id, this.form.value).subscribe(res => {
         this.dialogRef.close('update');
       });
+    }
+  }
+
+  showPassword(): Object {
+    let x = document.getElementById("password") as HTMLInputElement;
+    if (x.type === "password") {
+      x.type = "text";
+      return { 'icofont-eye btn btn-primary' : true };
+    } else {
+      x.type = "password";
+      return { 'icofont-eye-blocked btn btn-primary' : true };
     }
   }
 }

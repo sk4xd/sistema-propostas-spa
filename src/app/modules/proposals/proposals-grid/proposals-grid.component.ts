@@ -58,12 +58,14 @@ export class ProposalsGridComponent implements OnInit {
 
   public openProposalForm(): void {
     let dialogRef = this.dialog.open(ProposalsFormComponent, {
-      maxHeight: '900px',
-      width: '600px',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      width: '80%',
+      panelClass: 'full-screen-modal',
       disableClose: true
     });
 
-    dialogRef.componentInstance.proposal.status = { id: 1, status_description: 'Nova'}
+    dialogRef.componentInstance.proposal.status = { id: undefined, status_description: 'Nova'}
 
     dialogRef.afterClosed().subscribe(res => {
       if(res === 'save')
@@ -73,8 +75,11 @@ export class ProposalsGridComponent implements OnInit {
 
   public editProposalForm(proposal: any): void {
     let dialogRef = this.dialog.open(ProposalsFormComponent, {
-      maxHeight: '900px',
-      width: '900px',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      height: '100%',
+      width: '80%',
+      panelClass: 'full-screen-modal',
       disableClose: true,
     });
 

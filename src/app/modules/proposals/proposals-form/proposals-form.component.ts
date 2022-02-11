@@ -46,6 +46,7 @@ export class ProposalsFormComponent implements OnInit, AfterContentInit {
   customers: Customer[] = [];
   statuses: Status[] = [];
   selectedCustomer: Customer[] = [];
+  proposalCodeLabel = ' - Código: ';
   customerDropdownSettings = {
     singleSelection: true,
     idField: 'id',
@@ -90,6 +91,37 @@ export class ProposalsFormComponent implements OnInit, AfterContentInit {
     validators: [comissionPercentValidation, feePercentValidation]
   });
 
+  customerForm: FormGroup = new FormGroup({
+    name: new FormControl({ value: '', disabled: true }),
+    birthDate: new FormControl({ value: '', disabled: true }),
+    identity: new FormControl({ value: '', disabled: true }),
+    identityExpedition: new FormControl({ value: '', disabled: true }),
+    cpfCnpj: new FormControl({ value: '', disabled: true }),
+    mothersName: new FormControl({ value: '', disabled: true }),
+    fathersName: new FormControl({ value: '', disabled: true }),
+    civilState: new FormControl({ value: '', disabled: true }),
+    partnersName: new FormControl({ value: '', disabled: true }),
+    partnersCPF: new FormControl({ value: '', disabled: true }),
+    cellphone: new FormControl({ value: '', disabled: true }),
+    phoneNumber: new FormControl({ value: '', disabled: true }),
+    cep: new FormControl({ value: '', disabled: true }),
+    address: new FormControl({ value: '', disabled: true }),
+    number: new FormControl({ value: '', disabled: true }),
+    district: new FormControl({ value: '', disabled: true }),
+    city: new FormControl({ value: '', disabled: true }),
+    state: new FormControl({ value: '', disabled: true }),
+    complement: new FormControl({ value: '', disabled: true }),
+    firstReferralName: new FormControl({ value: '', disabled: true }),
+    firstReferralPhone: new FormControl({ value: '', disabled: true }),
+    secondReferralName: new FormControl({ value: '', disabled: true }),
+    secondReferralPhone: new FormControl({ value: '', disabled: true }),
+    job: new FormControl({ value: '', disabled: true }),
+    placeOfBirth: new FormControl({ value: '', disabled: true }),
+    ownHouse: new FormControl({ value: '', disabled: true }),
+    email: new FormControl({ value: '', disabled: true }),
+    observation: new FormControl({ value: '', disabled: true })
+  });
+
   constructor(
     public dialogRef: MatDialogRef<ProposalsFormComponent>,
     public dialog: MatDialog,
@@ -107,6 +139,7 @@ export class ProposalsFormComponent implements OnInit, AfterContentInit {
     this.fillStatus();
     this.findAllUploads();
     this.checkComissionValue();
+    this.setProposalCodeLabel();
   }
 
   ngAfterContentInit() {
@@ -114,10 +147,15 @@ export class ProposalsFormComponent implements OnInit, AfterContentInit {
       this.form.patchValue(this.proposal);
       this.form.controls['status'].setValue(this.proposal.status.id?.toString());
       this.proposal.customer.cpfCnpj = this.proposal.customer.cpfCnpj.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+      this.customerForm.patchValue(this.proposal.customer);
       this.selectedCustomer.push(this.proposal.customer);
       if (this.proposal.institute)
       this.selectedInstitute.push(this.proposal.institute);
     }
+  }
+
+  setProposalCodeLabel(): string {
+    return this.proposal.id ? (this.proposalCodeLabel + this.proposal.id) : '';
   }
 
   onNoClick(): void {
@@ -182,19 +220,6 @@ export class ProposalsFormComponent implements OnInit, AfterContentInit {
     })
   }
 
-  openCustomerInfo(): void {
-    let dialogRef = this.dialog.open(CustomersFormComponent, {
-      maxHeight: '900px',
-      width: '900px',
-      disableClose: true,
-    });
-
-    let customerIndex = this.customers.findIndex(c => c.id === this.selectedCustomer[0].id);
-    dialogRef.componentInstance.customer = this.customers[customerIndex];
-    dialogRef.componentInstance.editing = false;
-    dialogRef.componentInstance.readonly = true;
-  }
-
   openUploadsInfo(): void {
     let dialogRef = this.dialog.open(ProposalsUploadsComponent, {
       maxHeight: '900px',
@@ -249,6 +274,10 @@ export class ProposalsFormComponent implements OnInit, AfterContentInit {
     this.proposalsService.downloadContract(this.proposal.id).subscribe(res => {
       importedSaveAs(res.body, `${upload_name}`);
     });
+  }
+
+  fillCustomerInfoRightSide(): void {
+    this.customerForm.patchValue(this.customers[this.customers.findIndex(customer => customer.id === this.selectedCustomer[0].id)]);
   }
 
   removeContract(): void {
