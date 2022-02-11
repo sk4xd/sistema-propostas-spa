@@ -22,15 +22,6 @@ export const comissionPercentValidation:  ValidatorFn = (control: AbstractContro
   return null;
 };
 
-export const feePercentValidation:  ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-  const percent = control.get('fee');
-  if (percent?.value > 100) {
-    control.get('fee')?.setValue(100);
-    return { invalidPercent: true }
-  }
-  return null;
-};
-
 @Component({
   selector: 'app-proposals-form',
   templateUrl: './proposals-form.component.html',
@@ -88,7 +79,7 @@ export class ProposalsFormComponent implements OnInit, AfterContentInit {
     customer: new FormControl(''),
     status: new FormControl('')
   }, {
-    validators: [comissionPercentValidation, feePercentValidation]
+    validators: [comissionPercentValidation]
   });
 
   customerForm: FormGroup = new FormGroup({
