@@ -37,9 +37,10 @@ export class UsersFormComponent implements OnInit {
   }
 
   private checkEdit(): void {
-    if (this.editing)
-    this.form.controls['username'].disable();
-    this.form.controls['email'].disable();
+    if (this.editing) {
+      this.form.controls['username'].disable();
+      this.form.controls['email'].disable();
+    }
   }
 
   onNoClick(): void {
