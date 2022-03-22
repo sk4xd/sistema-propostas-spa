@@ -1,7 +1,9 @@
+import { finalize } from 'rxjs/operators';
 import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { saveAs as importedSaveAs } from "file-saver";
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Institute } from 'src/app/shared/models/institutes/institute.model';
 import { CustomerService } from 'src/app/shared/services/customer/customer.service';
 import { Customer } from './../../../shared/models/customers/customer.model';
@@ -10,6 +12,7 @@ import { Proposal } from './../../../shared/models/proposals/proposal.model';
 import { Status } from './../../../shared/models/proposals/status.model';
 import { ProposalsService } from './../../../shared/services/proposals/proposals.service';
 import { ProposalsUploadsComponent } from './../proposals-uploads/proposals-uploads.component';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 export const comissionPercentValidation:  ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   if(control.get('comission_value')?.value && control.get('final_value')?.value){
@@ -116,7 +119,8 @@ export class ProposalsFormComponent implements OnInit, AfterContentInit {
     public dialogRef: MatDialogRef<ProposalsFormComponent>,
     public dialog: MatDialog,
     private customerService: CustomerService,
-    private proposalsService: ProposalsService
+    private proposalsService: ProposalsService,
+    private spinner: NgxSpinnerService
   ) { }
 
   get f(){
@@ -159,7 +163,10 @@ export class ProposalsFormComponent implements OnInit, AfterContentInit {
         customer_id: this.form.controls['customer'].value[0].id,
         status_id: Number(this.form.controls['status'].value)
       })
-      this.proposalsService.save(formatedData).subscribe(res => {
+      this.spinner.show();
+      this.proposalsService.save(formatedData)
+      .pipe(finalize((() => this.spinner.hide)))
+      .subscribe((res: any) => {
         const id = res.id;
         this.uploadFiles(id);
         this.dialogRef.close('save');
@@ -179,12 +186,19 @@ export class ProposalsFormComponent implements OnInit, AfterContentInit {
         delete formatedData.institute_id;
       }
 
-      this.proposalsService.update(this.proposal.id.toString(), formatedData).subscribe(res => {
-        this.uploadFiles(this.proposal.id);
-        this.uploadContract(this.proposal.id);
-        this.dialogRef.close('update');
-      });
+      this.updateProposal(formatedData);
     }
+  }
+
+  updateProposal(formatedData: any): void {
+    this.spinner.show();
+    this.proposalsService.update(this.proposal.id.toString(), formatedData)
+    .pipe(finalize((() => this.spinner.hide)))
+    .subscribe((res: any) => {
+      this.uploadFiles(this.proposal.id);
+      this.uploadContract(this.proposal.id);
+      this.dialogRef.close('update');
+    });
   }
 
   fillInstitutes(): void {

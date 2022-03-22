@@ -177,3 +177,14 @@
       </div>
     </form>
 </div>
+
+<swal
+  #deleteSwal
+  title="Os dados não salvos serão perdidos ao sair."
+  text="Esssa ação não pode ser desfeita."
+  icon="question"
+  [showCancelButton]="true"
+  [focusCancel]="true"
+  (confirm)="onNoClick()">
+</swal>
+

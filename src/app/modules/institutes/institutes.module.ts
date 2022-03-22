@@ -1,6 +1,7 @@
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -28,9 +29,10 @@ import { InstitutesRoutingModule } from './institutes-routing.module';
     MatButtonModule,
     MatPaginatorModule,
     MatDialogModule,
+    SweetAlert2Module,
     MatProgressSpinnerModule,
     MatIconModule
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
 export class InstitutesModule { }

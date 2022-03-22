@@ -18,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MaskApplierService, IConfig, NgxMaskModule } from 'ngx-mask';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ProposalsUploadsComponent } from './proposals-uploads/proposals-uploads.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) | null = null;
 
@@ -40,6 +41,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) | null = null;
     MatProgressSpinnerModule,
     MatIconModule,
     MatInputModule,
+    SweetAlert2Module,
     NgxMaskModule.forRoot(),
     NgMultiSelectDropDownModule.forRoot()
   ],

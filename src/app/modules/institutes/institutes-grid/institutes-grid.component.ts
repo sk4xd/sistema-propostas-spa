@@ -1,3 +1,4 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { InstitutesService } from 'src/app/shared/services/institutes/institutes.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -20,7 +21,8 @@ export class InstitutesGridComponent implements OnInit {
 
   constructor(
     private institutesService: InstitutesService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private spinner: NgxSpinnerService
   ) {
     this.paginator = {} as MatPaginator;
     this.input = {} as ElementRef<HTMLInputElement>;
@@ -31,20 +33,19 @@ export class InstitutesGridComponent implements OnInit {
   }
 
   private loadInstitutes(): void {
-    this.loading = true;
+    this.spinner.show();
     this.institutesService.getAll()
-    .pipe(finalize(() => {
-      this.loading = false;
-    })).subscribe((res:any) => {
+    .pipe(finalize((() => this.spinner.hide)))
+    .subscribe((res: any) => {
       this.institutesData = res;
     })
   }
 
   public changePage(pageChange: PageEvent): void {
-    this.loading = true;
-    this.institutesService.getAll(pageChange.pageIndex + 1, pageChange.pageSize).pipe(finalize(() => {
-      this.loading = false;
-    })).subscribe((res: any) => {
+    this.spinner.show();
+    this.institutesService.getAll(pageChange.pageIndex + 1, pageChange.pageSize)
+    .pipe(finalize((() => this.spinner.hide)))
+    .subscribe((res: any) => {
       this.institutesData = res;
     });
   }

@@ -1,3 +1,4 @@
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
@@ -36,6 +37,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) | null = null;
     MatProgressSpinnerModule,
     MatIconModule,
     MatInputModule,
+    SweetAlert2Module,
     NgxMaskModule.forRoot()
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

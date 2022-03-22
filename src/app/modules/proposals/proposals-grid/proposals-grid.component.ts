@@ -1,3 +1,4 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ProposalsService } from './../../../shared/services/proposals/proposals.service';
 import { ProposalsResponse } from './../../../shared/models/proposals/proposals-response.model';
 import { Proposal } from './../../../shared/models/proposals/proposal.model';
@@ -23,7 +24,8 @@ export class ProposalsGridComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private proposalsService: ProposalsService
+    private proposalsService: ProposalsService,
+    private spinner: NgxSpinnerService
   ) {
     this.paginator = {} as MatPaginator;
     this.input = {} as ElementRef<HTMLInputElement>;
@@ -38,20 +40,19 @@ export class ProposalsGridComponent implements OnInit {
   }
 
   public changePage(pageChange: PageEvent): void {
-    this.loading = true;
-    this.proposalsService.getAll(pageChange.pageIndex + 1, pageChange.pageSize).pipe(finalize(() => {
-      this.loading = false;
-    })).subscribe((res: any) => {
+    this.spinner.show();
+    this.proposalsService.getAll(pageChange.pageIndex + 1, pageChange.pageSize)
+    .pipe(finalize((() => this.spinner.hide)))
+    .subscribe((res: any) => {
       this.propostasData = res;
     });
   }
 
   private loadProposals(): void {
-    this.loading = true;
+    this.spinner.show();
     this.proposalsService.getAll()
-    .pipe(finalize(() => {
-      this.loading = false;
-    })).subscribe((res:any) => {
+    .pipe(finalize((() => this.spinner.hide)))
+    .subscribe((res: any) => {
       this.propostasData = res;
     })
   }

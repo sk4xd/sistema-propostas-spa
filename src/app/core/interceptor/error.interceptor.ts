@@ -3,11 +3,19 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthenticationService } from '../services/authentication.service';
+import { NotifierService } from 'angular-notifier';
 
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-    constructor(private authenticationService: AuthenticationService) { }
+    private notifier: NotifierService;
+
+    constructor(
+      private authenticationService: AuthenticationService,
+      private notifierService: NotifierService
+      ) {
+        this.notifier = notifierService;
+       }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
@@ -17,7 +25,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             }
 
             const error = (err && err.error && err.error.message) || err.statusText;
-            console.error(err);
+            this.notifier.notify('error', err.error.message || err.statusText);
             return throwError(error);
         }))
     }

@@ -1,3 +1,4 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { CepService } from './../../../shared/services/cep/cep.service';
 import { Observable } from 'rxjs';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -22,7 +23,8 @@ export class CustomersGridComponent implements OnInit {
 
   constructor(
     private customerService: CustomerService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private spinner: NgxSpinnerService
   ) {
     this.paginator = {} as MatPaginator;
     this.input = {} as ElementRef<HTMLInputElement>;
@@ -33,22 +35,20 @@ export class CustomersGridComponent implements OnInit {
   }
 
   private loadCustomers(): void {
-    this.loading = true;
+    this.spinner.show();
     this.customerService.getAll()
-    .pipe(finalize(() => {
-      this.loading = false;
-    }))
-    .subscribe(res => {
+    .pipe(finalize((() => this.spinner.hide)))
+    .subscribe((res: any) => {
       this.customersData = res;
     })
 
   }
 
   public changePage(pageChange: PageEvent): void {
-    this.loading = true;
-    this.customerService.getAll(pageChange.pageIndex + 1, pageChange.pageSize).pipe(finalize(() => {
-      this.loading = false;
-    })).subscribe((res: any)=> {
+    this.spinner.show();
+    this.customerService.getAll(pageChange.pageIndex + 1, pageChange.pageSize)
+    .pipe(finalize((() => this.spinner.hide)))
+    .subscribe((res: any) => {
       this.customersData = res;
     });
   }

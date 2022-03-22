@@ -1,3 +1,4 @@
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -34,6 +35,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) | null = null;
     MatDialogModule,
     MatProgressSpinnerModule,
     MatIconModule,
+    SweetAlert2Module,
     NgxMaskModule.forRoot()
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

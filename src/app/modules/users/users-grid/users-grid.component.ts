@@ -1,3 +1,4 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -21,7 +22,8 @@ export class UsersGridComponent implements OnInit, AfterViewInit {
 
   constructor(
     private userService: UserService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private spinner: NgxSpinnerService
   ) {
     this.paginator = {} as MatPaginator;
     this.input = {} as ElementRef<HTMLInputElement>;
@@ -45,20 +47,19 @@ export class UsersGridComponent implements OnInit, AfterViewInit {
   }
 
   private loadUsers(): void {
-    this.loading = true;
+    this.spinner.show();
     this.userService.getAll()
-    .pipe(finalize(() => {
-      this.loading = false;
-    })).subscribe((res:any) => {
+    .pipe(finalize((() => this.spinner.hide)))
+    .subscribe((res: any) => {
       this.usersData = res;
     })
   }
 
   public changePage(pageChange: PageEvent): void {
-    this.loading = true;
-    this.userService.getAll(pageChange.pageIndex + 1, pageChange.pageSize).pipe(finalize(() => {
-      this.loading = false;
-    })).subscribe((res: any) => {
+    this.spinner.show();
+    this.userService.getAll(pageChange.pageIndex + 1, pageChange.pageSize)
+    .pipe(finalize((() => this.spinner.hide)))
+    .subscribe((res: any) => {
       this.usersData = res;
     });
   }

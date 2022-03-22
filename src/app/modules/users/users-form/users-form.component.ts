@@ -61,13 +61,20 @@ export class UsersFormComponent implements OnInit {
     }
   }
 
-  showPassword(): Object {
+  showPassword(): void {
     let x = document.getElementById("password") as HTMLInputElement;
     if (x.type === "password") {
       x.type = "text";
-      return { 'icofont-eye btn btn-primary' : true };
     } else {
       x.type = "password";
+    }
+  }
+
+  changeButtonClass(): Object {
+    let x = document.getElementById("password") as HTMLInputElement;
+    if (x.type === "password") {
+      return { 'icofont-eye btn btn-primary' : true };
+    } else {
       return { 'icofont-eye-blocked btn btn-primary' : true };
     }
   }

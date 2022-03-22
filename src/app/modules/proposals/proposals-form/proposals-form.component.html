@@ -1,5 +1,5 @@
 <div class="row col-md-12" style="flex-direction: row-reverse;">
-  <span (click)="closeModal()" type="button" class="btn-close" aria-label="Close" style="cursor: pointer;"></span>
+  <span [swal]="deleteSwal" type="button" class="btn-close" aria-label="Close" style="cursor: pointer;"></span>
 </div>
 <div class="row">
   <h3 class="col-md-6">
@@ -185,7 +185,7 @@
       </div>
     </div>
     <div class="form-group" style="margin-top: 1em; display: flex; justify-content: space-between;">
-      <button type="button" (click)="onNoClick()" class="btn btn-secondary">Sair</button>
+      <button type="button" [swal]="deleteSwal" class="btn btn-secondary">Sair</button>
       <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Salvar</button>
     </div>
   </form>
@@ -358,3 +358,15 @@
     </div>
   </form>
 </div>
+
+<swal
+  #deleteSwal
+  title="Os dados não salvos serão perdidos ao sair."
+  text="Esssa ação não pode ser desfeita."
+  icon="question"
+  [showCancelButton]="true"
+  [focusCancel]="true"
+  (confirm)="onNoClick()">
+</swal>
+
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
