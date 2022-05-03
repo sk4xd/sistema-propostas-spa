@@ -12,13 +12,13 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/proposals">Propostas</a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="user.user?.isAdmin" class="nav-item">
         <a class="nav-link" routerLink="/users">Usuários</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/customers">Clientes</a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="user.user?.isAdmin" class="nav-item">
         <a class="nav-link" routerLink="/institutes">Intituições</a>
       </li>
       <li class="nav-item">

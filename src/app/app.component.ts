@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from './core/services/authentication.service';
 import { UserToken } from './shared/models/users/user-token.model';
 
