@@ -42,5 +42,11 @@ export class InstitutesFormComponent implements OnInit {
         this.dialogRef.close('save');
       });
     }
+
+    if (this.form.valid && this.editing){
+      this.institutesService.update(this.institute.id, this.form.value).subscribe(res => {
+        this.dialogRef.close('update');
+      });
+    }
   }
 }
