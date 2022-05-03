@@ -25,4 +25,8 @@ export class InstitutesService {
   save(institute: Institute): Observable<any> {
     return this.http.post(`${environment.apiUrl}/proposals/institutes`, institute);
   }
+
+  update(id: string | undefined, institute: Institute): Observable<any> {
+    return this.http.put(`${environment.apiUrl}/proposals/institutes/${id}`, institute);
+  }
 }
