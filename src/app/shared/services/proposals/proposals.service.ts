@@ -15,15 +15,26 @@ import { InstitutesResponse } from '../../models/institutes/institutes-response.
 export class ProposalsService {
     constructor(private http: HttpClient) { }
 
-    getAll(pageNumber = 1, pageSize = 5): Observable<ProposalsResponse> {
-
+    getAll(pageNumber = 1, pageSize = 5, {
+      id = null,
+      contract_type = null,
+      customer_id= null,
+      proposal_status = null,
+      contract_status = null,
+      user_id = null,
+      date = null
+    }: any): Observable<ProposalsResponse> {
         return this.http.get<ProposalsResponse>(`${environment.apiUrl}/proposals`, {
           params: new HttpParams()
-              // .set('courseId', userId.toString())
-              // .set('filter', filter)
-              // .set('sortOrder', sortOrder)
-              .set('page', pageNumber.toString())
-              .set('per_page', pageSize.toString())
+          .set('proposal_id', id ? id.toString() : null)
+          .set('contract_type', contract_type ? contract_type.toString() : null)
+          .set('customer_id', customer_id ? customer_id.toString(): null)
+          .set('contract_status', contract_status ? contract_status.toString() : null)
+          .set('proposal_status', proposal_status ? proposal_status.toString() : null)
+          .set('user', user_id ? user_id.toString() : null)
+          .set('date', date ? date.toString() : null)
+          .set('page', pageNumber.toString())
+          .set('per_page', pageSize.toString())
       }).pipe(
           map((res: any) =>  res)
       )
@@ -32,9 +43,6 @@ export class ProposalsService {
     getAllInstitutes(pageNumber = 1, pageSize = 999): Observable<InstitutesResponse> {
         return this.http.get<InstitutesResponse>(`${environment.apiUrl}/proposals/institutes`, {
           params: new HttpParams()
-              // .set('courseId', userId.toString())
-              // .set('filter', filter)
-              // .set('sortOrder', sortOrder)
               .set('page', pageNumber.toString())
               .set('per_page', pageSize.toString())
       }).pipe(
