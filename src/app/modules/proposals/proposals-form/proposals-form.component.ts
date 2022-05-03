@@ -34,7 +34,7 @@ export const comissionPercentValidation:  ValidatorFn = (control: AbstractContro
 })
 export class ProposalsFormComponent implements OnInit, AfterContentInit {
 
-  user: UserToken | null = null;
+  user!: UserToken | null;
   proposal: Proposal = {} as Proposal;
   editing: boolean = false;
   uploads: ProposalUpload[] = [];
