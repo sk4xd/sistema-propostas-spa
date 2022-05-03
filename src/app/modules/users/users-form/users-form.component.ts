@@ -64,8 +64,6 @@ export class UsersFormComponent implements OnInit {
   }
 
   showPassword(): void {
-    this.form
-    debugger
     let x = document.getElementById("password") as HTMLInputElement;
     if (x.type === "password") {
       x.type = "text";

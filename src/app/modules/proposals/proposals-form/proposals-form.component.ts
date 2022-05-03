@@ -13,6 +13,9 @@ import { Status } from './../../../shared/models/proposals/status.model';
 import { ProposalsService } from './../../../shared/services/proposals/proposals.service';
 import { ProposalsUploadsComponent } from './../proposals-uploads/proposals-uploads.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { Observable } from 'rxjs';
+import { UserToken } from 'src/app/shared/models/users/user-token.model';
 
 export const comissionPercentValidation:  ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   if(control.get('comission_value')?.value && control.get('final_value')?.value){
@@ -31,6 +34,7 @@ export const comissionPercentValidation:  ValidatorFn = (control: AbstractContro
 })
 export class ProposalsFormComponent implements OnInit, AfterContentInit {
 
+  user: UserToken | null = null;
   proposal: Proposal = {} as Proposal;
   editing: boolean = false;
   uploads: ProposalUpload[] = [];
@@ -120,7 +124,8 @@ export class ProposalsFormComponent implements OnInit, AfterContentInit {
     public dialog: MatDialog,
     private customerService: CustomerService,
     private proposalsService: ProposalsService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private authenticationService: AuthenticationService
   ) { }
 
   get f(){
@@ -128,6 +133,7 @@ export class ProposalsFormComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit(): void {
+    this.user = this.authenticationService.userValue;
     this.fillCustomers();
     this.fillInstitutes();
     this.fillStatus();
@@ -145,7 +151,16 @@ export class ProposalsFormComponent implements OnInit, AfterContentInit {
       this.selectedCustomer.push(this.proposal.customer);
       if (this.proposal.institute)
       this.selectedInstitute.push(this.proposal.institute);
+      if (!this.user?.user.isAdmin && (this.proposal.status.id === 1 || this.proposal.status.id === 2)) {
+        this.form.controls['status'].disable();
+      } else if(!this.user?.user.isAdmin && (this.proposal.status.id !== 1 && this.proposal.status.id !== 2)) {
+        this.form.disable();
+      }
     }
+  }
+
+  notEditableByUser(): boolean {
+    return !this.user?.user.isAdmin && (this.proposal.status.id !== 1 && this.proposal.status.id !== 2);
   }
 
   setProposalCodeLabel(): string {

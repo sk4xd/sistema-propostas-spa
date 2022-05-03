@@ -9,6 +9,85 @@
       </div>
       <!-- <i (click)="openUserForm()" class="icofont-plus-circle icofont-2x"></i> -->
   </mat-input-container>
+  <div [formGroup]="form" class="row" style="margin-top: 10px;">
+    <div class="accordion" id="accordion-id">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Filtro
+          </button>
+        </h2>
+        <div id="collapseOne" class="collapse show"
+        data-bs-parent="collapseOne"
+        aria-labelledby="headingOne">
+          <div class="accordion-body">
+            <div class="row">
+              <div class="form-group col-md-2">
+                <label for="proposta">Nº Prosposta</label>
+                <ng-multiselect-dropdown
+                  formControlName="proposal"
+                  [data]="propostasDropdownData.data"
+                  [settings]="proposalsDropdownSettings"
+                >
+                </ng-multiselect-dropdown>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="contractType">Tipo do contrato</label>
+                <select formControlName="contract_type" type="text" class="form-control" id="contractType">
+                  <option value="">Selecione</option>
+                  <option value="Novo">Novo</option>
+                  <option value="Portabilidade">Portabilidade</option>
+                  <option value="Refinanciamento">Refinanciamento</option>
+                </select>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="proposta">Cliente</label>
+                <ng-multiselect-dropdown
+                  formControlName="customer"
+                  [data]="customers"
+                  [settings]="customerDropdownSettings"
+                >
+                </ng-multiselect-dropdown>
+              </div>
+              <div class="form-group col-md-2">
+                <label for="contractStatus">Status contrato</label>
+                <select formControlName="contract_status" type="text" id="contractStatus" class="form-control">
+                  <option value="">Selecione</option>
+                  <option value="1">Enviado</option>
+                  <option value="2">Assinado</option>
+                  <option value="3">Pago</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-3">
+                <label for="proposta">Status Proposta</label>
+                <select type="text" formControlName="proposal_status" id="status" class="form-control">
+                  <option value="">Selecione</option>
+                  <option *ngFor="let status of statuses" [value]="status.id">{{status.status_description}}</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="data">Data</label>
+                <input
+                  formControlName="date"
+                  class="form-control"
+                  id="data"
+                  type="date"
+                />
+              </div>
+              <div class="form-group col-md-1" style="align-self: flex-end;">
+                <button (click)="clearFilter()" class="btn btn-secondary">LIMPAR</button>
+              </div>
+              <div class="form-group col-md-1" style="align-self: flex-end;">
+                <button (click)="loadProposals()" class="btn btn-primary">BUSCAR</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <table class="table table-hover">
     <thead>
