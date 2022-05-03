@@ -32,6 +32,7 @@ export class UsersFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if(this.user.id)
     this.form.patchValue(this.user);
     this.checkEdit();
   }
@@ -55,6 +56,7 @@ export class UsersFormComponent implements OnInit {
     }
 
     if (this.form.valid && this.editing){
+      this.form.enable();
       this.userService.update(this.user.id, this.form.value).subscribe(res => {
         this.dialogRef.close('update');
       });
@@ -62,6 +64,8 @@ export class UsersFormComponent implements OnInit {
   }
 
   showPassword(): void {
+    this.form
+    debugger
     let x = document.getElementById("password") as HTMLInputElement;
     if (x.type === "password") {
       x.type = "text";

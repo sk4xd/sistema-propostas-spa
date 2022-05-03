@@ -11,6 +11,7 @@
           <div class="form-group col-md-12">
             <label for="name">Nome completo</label>
             <input formControlName="name" type="text" class="form-control" id="nome" placeholder="Nome completo">
+            <div *ngIf="form.controls['name'].hasError('required') && (form.controls['name'].dirty || form.controls['name'].touched)" class="alert alert-danger">Campo obrigatório</div>
           </div>
         </div>
         <div class="row">
@@ -26,6 +27,17 @@
             <button [ngClass]="changeButtonClass()" type="button" (click)="showPassword()" title="Mostrar senha" style="height: 38px;"></button>
           </div>
         </div>
+        <div class="row" style="margin-top: 0">
+          <div class="form-group col-md-6">
+            <div *ngIf="form.controls['username'].hasError('required') && (form.controls['username'].dirty || form.controls['username'].touched)" class="alert alert-danger">Campo obrigatório</div>
+            <div *ngIf="form.controls['username'].hasError('minlength') && (form.controls['username'].dirty || form.controls['username'].touched)" class="alert alert-danger">Minímo 5 caracteres</div>
+            <div *ngIf="form.controls['username'].hasError('maxlength') && (form.controls['username'].dirty || form.controls['username'].touched)" class="alert alert-danger">Máximo 10 caracteres</div>
+          </div>
+          <div class="form-group col-md-5">
+            <div *ngIf="form.controls['password'].hasError('required') && (form.controls['password'].dirty || form.controls['password'].touched)" class="alert alert-danger">Campo obrigatório</div>
+            <div *ngIf="form.controls['password'].hasError('minlength') && (form.controls['password'].dirty || form.controls['password'].touched)" class="alert alert-danger">Minímo 6 caracteres</div>
+          </div>
+        </div>
         <div class="form-group">
           <label for="inputAddress">E-mail</label>
           <input formControlName="email" placeholder="user@example.gov" list="defaultEmails" size="64" maxlength="256" type="email" class="form-control" id="email" placeholder="E-mail">
@@ -36,6 +48,7 @@
             <option value="@starkindustries.gov.br">
             <option value="@outlook.com">
           </datalist>
+          <div *ngIf="form.controls['email'].hasError('required') && (form.controls['email'].dirty || form.controls['email'].touched)" role="alert" class="alert alert-danger">Campo obrigatório</div>
         </div>
         <div class="row">
           <div class="form-group col-md-6">
@@ -45,6 +58,7 @@
           <div class="form-group col-md-6">
             <label for="cellphone">Celular</label>
             <input formControlName="cellphone" type="text" class="form-control" [validation]="true" mask="(00) 0000-0000||(00) 0 0000-0000" id="cellphone" placeholder="(xx) 99999-9999">
+            <div *ngIf="form.controls['cellphone'].hasError('required') && (form.controls['cellphone'].dirty || form.controls['cellphone'].touched)" class="alert alert-danger">Campo obrigatório</div>
           </div>
         </div>
         <div class="form-group">
