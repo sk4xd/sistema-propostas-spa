@@ -52,6 +52,28 @@ export class AuthenticationService {
             }));
     }
 
+    forgotPassword(email: string) {
+      return this.http.post<any>(`${environment.apiUrl}/password/forgot`, {
+        email
+      }, { withCredentials: true })
+      .pipe(map((user) => {
+        return user;
+      }));
+    }
+
+    resetPassword(password: string, token: string) {
+      return this.http.post<any>(`${environment.apiUrl}/password/reset`, {
+        password
+      }, {
+        params: {
+          token
+        }
+      })
+      .pipe(map((user) => {
+        return user;
+    }));
+    }
+
     // helper methods
 
     private refreshTokenTimeout: any;

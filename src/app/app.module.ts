@@ -12,6 +12,7 @@ import { appInitializer } from './core/http/app.initializer';
 import { ErrorInterceptor } from './core/interceptor/error.interceptor';
 import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
 import { AuthenticationService } from './core/services/authentication.service';
+import { ForgotPasswordComponent } from './modules/forgot-password/forgot-password.component';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
