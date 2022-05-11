@@ -20,7 +20,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(
           tap(success => {
-            this.notifier.notify('success', 'Operação realizada com sucesso.');
+            // this.notifier.notify('success', 'Operação realizada com sucesso.');
           }),
           catchError(err => {
             if ([401, 403].includes(err.status) && this.authenticationService.userValue || !this.authenticationService.userValue) {
@@ -29,7 +29,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             }
 
             const error = (err && err.error && err.error.message) || err.statusText;
-            this.notifier.notify('error', err.error.message || err.statusText);
+            // this.notifier.notify('error', err.error.message || err.statusText);
             return throwError(error);
         }))
     }

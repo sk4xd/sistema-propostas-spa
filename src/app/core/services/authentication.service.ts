@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -16,7 +17,8 @@ export class AuthenticationService {
 
     constructor(
         private router: Router,
-        private http: HttpClient
+        private http: HttpClient,
+        private cookieService: CookieService
     ) {
         this.userSubject = new BehaviorSubject<UserToken | null>(null);
         this.user = this.userSubject.asObservable();
@@ -49,7 +51,8 @@ export class AuthenticationService {
                 this.userSubject.next(user);
                 this.startRefreshTokenTimer(user.token);
                 return user;
-            }));
+              }
+            ));
     }
 
     forgotPassword(email: string) {
