@@ -1,0 +1,127 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+	padding: 0;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, b, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+  box-shadow:2px 5px 20px #d8d8d8;
+}
+
+nav {
+  background-color: #606163;
+}
+
+/* .nav-pills .nav-link.active {
+  background: linear-gradient(180deg, rgba(120,128,42,1) 0%, rgba(156,165,58,1) 99%);
+} */
+
+.nav-pills .nav-link {
+  border-radius: 0;
+}
+
+.corner-logo {
+  width: 100%;
+  height: 5rem;
+}
+
+a {
+  width: 100%;
+}
+
+.nav-pills .nav-link, .nav-pills .show>.nav-link {
+  color: #eeeeee;
+  background-color: transparent;
+}
+
+.side-bar-align {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 3.313rem;
+}
+
+.side-bar-align :hover {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  height: 3.313rem;
+  background: linear-gradient(180deg, rgba(120,128,42,1) 0%, rgba(156,165,58,1) 99%);
+}
+
+.side-bar-align :active {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  height: 3.313rem;
+  background: linear-gradient(180deg, rgba(120,128,42,1) 0%, rgba(156,165,58,1) 99%);
+}
+
+.icon-style {
+  height: 1rem !important;
+  width: 1rem !important;
+  margin-right: 1rem !important;
+}
+
+.icon-style :hover {
+  height: 1rem !important;
+  width: 1rem !important;
+  margin-right: 1rem !important;
+}
+
+.side-bar-spaces {
+  margin-top: 1rem;
+}
+
+
+.nav-link {
+  padding-left: 2rem;
+}

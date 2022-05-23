@@ -4,15 +4,14 @@
   margin: 100px 0px;
 }
 
-.mat-form-field {
-  width: 100%;
-  min-width: 300px;
-}
-
-mat-card-title,
-mat-card-content {
+.login-container {
   display: flex;
   justify-content: center;
+  background-color: #fafafa;
+  width: 30.313rem;
+  height: 30.313rem;
+  align-items: center;
+  flex-direction: column;
 }
 
 .error {
@@ -27,7 +26,33 @@ mat-card-content {
   justify-content: flex-end;
 }
 
+.input-width {
+  width: 25rem;
+  margin: 1rem;
+  color: #aaaaaa;
+}
+
+.button-style {
+  color: #fff;
+  background: rgb(120,128,42);
+  background: linear-gradient(180deg, rgba(120,128,42,1) 0%, rgba(156,165,58,1) 99%);
+  margin: 1rem;
+  height: 3.563rem;
+  width: 25rem;
+  box-shadow:0px 20px 20px #d8d8d8;
+}
+
+.esqueceu-senha-label {
+  font-size: 0.833rem;
+  color: #cccdcd;
+}
+
+a {
+  font-size: 0.833rem;
+  color: #eaeaea;
+}
+
 img {
-  height: 150px;
-  width: 500px;
+  width: 18.163rem;
+  height: 4.163rem;
 }

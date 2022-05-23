@@ -1,17 +1,82 @@
-table {
+.title-propostas {
+  text-align: initial;
+  padding-left: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.button-nova-proposta-style {
+  color: #fff;
+  background: rgb(120,128,42);
+  background: linear-gradient(180deg, rgba(120,128,42,1) 0%, rgba(156,165,58,1) 99%);
+  margin: 1rem;
+  height: 3.563rem;
+  width: 15.313rem;
+  box-shadow:0px 20px 20px #d8d8d8;
+  border: none;
+}
+
+.accordion-item {
+  box-shadow: 2px 5px 20px #d8d8d8;
+  background-color: #fafafa;
+  border: none;
+  border-radius: unset;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.accordion-button {
+  background-color: #fafafa;
+  color: #222;
+  font-size: 20px;
+}
+
+.accordion-button:not(.collapsed)::after {
+  color: #222;
+  background-image: none;
+}
+
+.accordion-button:not(.collapsed) {
+  border-bottom: 1px dotted #827F82;
+  box-shadow: none;
+}
+
+.button-filtro {
+  color:#fafafa;
+  height: 3.75rem;
+  width: 5rem;
+  background-color: #222;
+  border: none;
+  border-radius: unset;
+  font-size: 0.625rem;
+}
+
+.input-width {
+  color: #aaaaaa;
   width: 100%;
 }
 
-th.mat-sort-header-sorted {
-  color: black;
+:host ::ng-deep mat-paginator .mat-paginator-container {
+  background-color: #f1f1f1;
 }
 
-.mat-row .mat-cell {
-  border-bottom: 1px solid transparent;
-  border-top: 1px solid transparent;
-  cursor: pointer;
+:host ::ng-deep .multiselect-dropdown {
+  height: 3.563rem;
+  background-color: #eeeeee;
+  color: #bbbbbb;
+  border: none;
 }
 
-.mat-row:hover .mat-cell {
-  border-color: currentColor;
+:host ::ng-deep .multiselect-dropdown .dropdown-btn {
+  border: none !important;
+}
+
+:host ::ng-deep .multiselect-dropdown .dropdown-btn .selected-item-container .selected-item {
+  max-width: none !important;
+}
+
+.button-group-align {
+  align-self: flex-end;
+  display: flex;
+  justify-content: space-around;
 }

@@ -3,9 +3,103 @@
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import './assets/icofont/icofont.min.css';
 @import "~angular-notifier/styles.css";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+
+
+body {
+  background-image: url('./assets/login-background.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+input {
+  height: 3.563rem;
+  background-color: #eeeeee;
+  color: #bbbbbb;
+  border: none;
+}
+
+select {
+  height: 3.563rem;
+  background-color: #eeeeee;
+  color: #bbbbbb;
+  border: none;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+@media screen and (max-width: 2560px) {
+  body {
+    background-size: 160rem 67.5rem;
+  }
+}
+
+@media screen and (max-width: 1920px) {
+  body {
+    background-size: 120rem 67.5rem;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  body {
+    background-size: 90rem 48.063rem;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  body {
+    background-size: 85.375rem 48rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  body {
+    background-size: 64rem 48.063rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  body {
+    background-size: 50rem 37.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    background-size: 48rem 48.063rem;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  body {
+    background-size: 40rem 22.5rem;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  body {
+    background-size: 26.563rem 48.063rem;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  body {
+    background-size: 23.438rem 48.063rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  body {
+    background-size: 20rem 48.063rem;
+  }
+}
+
+
 
 * {
   box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .table-header {
@@ -48,4 +142,34 @@ i {
   padding: 1em;
   width: 100%;
   height: 100%;
+}
+
+table {
+  margin-top: 2rem;
+  box-shadow: 2px 5px 20px #d8d8d8;
+  background-color: #f1f1f1;
+  color: #222222;
+}
+
+table thead {
+  height: 3.563rem;
+  color: #aaaaaa;
+  background-color: #fafafa;
+}
+
+table tr {
+  height: 3.563rem;
+}
+
+tbody, td, tfoot, th, thead, tr {
+  vertical-align: middle;
+  border-style: none;
+}
+
+.generic-background {
+  background-color: #f1f1f1;
+}
+
+:host ::ng-deep mat-paginator .mat-paginator {
+  display: inline;
 }

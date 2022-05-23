@@ -1,11 +1,13 @@
-<div class="mat-elevation-z8 padding-1">
-  <h4>
-    Propostas
-  </h4>
+<div class="mat-elevation-z8 padding-1 generic-background">
   <mat-input-container class="row" style="text-align: end;">
+     <div class="col-md-6 title-propostas">
+        <h4>
+          Propostas
+        </h4>
+     </div>
       <!-- <input matInput placeholder="Buscar usuário" #input> -->
-      <div>
-        <button type="button" (click)="openProposalForm()" class="btn btn-primary">Nova proposta</button>
+      <div class="col-md-6">
+        <button type="button" (click)="openProposalForm()" class="button-nova-proposta-style">Nova proposta</button>
       </div>
       <!-- <i (click)="openUserForm()" class="icofont-plus-circle icofont-2x"></i> -->
   </mat-input-container>
@@ -22,7 +24,7 @@
         aria-labelledby="headingOne">
           <div class="accordion-body">
             <div class="row">
-              <div class="form-group col-md-2">
+              <div class="form-group col-md-3">
                 <label for="proposta">Nº Prosposta</label>
                 <ng-multiselect-dropdown
                   formControlName="proposal"
@@ -33,7 +35,7 @@
               </div>
               <div class="form-group col-md-3">
                 <label for="contractType">Tipo do contrato</label>
-                <select formControlName="contract_type" type="text" class="form-control" id="contractType">
+                <select formControlName="contract_type" type="text" class="input-width" id="contractType">
                   <option value="">Selecione</option>
                   <option value="Novo">Novo</option>
                   <option value="Portabilidade">Portabilidade</option>
@@ -49,9 +51,9 @@
                 >
                 </ng-multiselect-dropdown>
               </div>
-              <div class="form-group col-md-2">
+              <div class="form-group col-md-3">
                 <label for="contractStatus">Status contrato</label>
-                <select formControlName="contract_status" type="text" id="contractStatus" class="form-control">
+                <select formControlName="contract_status" type="text" id="contractStatus" class="input-width">
                   <option value="">Selecione</option>
                   <option value="1">Enviado</option>
                   <option value="2">Assinado</option>
@@ -60,27 +62,25 @@
               </div>
             </div>
             <div class="row">
-              <div class="form-group col-md-3">
+              <div class="form-group col-md-6">
                 <label for="proposta">Status Proposta</label>
-                <select type="text" formControlName="proposal_status" id="status" class="form-control">
+                <select type="text" formControlName="proposal_status" id="status" class="input-width">
                   <option value="">Selecione</option>
                   <option *ngFor="let status of statuses" [value]="status.id">{{status.status_description}}</option>
                 </select>
               </div>
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-3">
                 <label for="data">Data</label>
                 <input
                   formControlName="date"
-                  class="form-control"
+                  class="input-width"
                   id="data"
                   type="date"
                 />
               </div>
-              <div class="form-group col-md-1" style="align-self: flex-end;">
-                <button (click)="clearFilter()" class="btn btn-secondary">LIMPAR</button>
-              </div>
-              <div class="form-group col-md-1" style="align-self: flex-end;">
-                <button (click)="loadProposals()" class="btn btn-primary">BUSCAR</button>
+              <div class="form-group col-md-3 button-group-align">
+                <button (click)="clearFilter()" class="button-filtro">Limpar</button>
+                <button (click)="loadProposals()" class="button-filtro">Buscar</button>
               </div>
             </div>
           </div>
@@ -119,7 +119,6 @@
   </table>
 
   <mat-paginator
-    class="margin-top-2"
     (page)="changePage($event)"
     [length]="this.propostasData.total"
     [pageSize]="5"
