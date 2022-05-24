@@ -1,5 +1,5 @@
 <div class="row">
-  <nav *ngIf="user" class="col-md-2 navbar navbar-expand-lg">
+  <nav *ngIf="user && !resetToken" class="col-md-2 navbar navbar-expand-lg">
     <a class="navbar-brand"routerLink="/proposals"><img class="corner-logo" src="../assets/realizacred-cornerbar.jpg" alt="Logo da RealizaCred">
     </a>
     <div class="nav flex-column nav-pills side-bar-spaces" id="v-pills-tab" role="tablist" aria-orientation="vertical">
